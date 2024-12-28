@@ -46,4 +46,8 @@ local catppuccin = {
     end
 }
 
-return nightfox
+return {
+    -- everforest,
+    -- catppuccin,
+    nightfox,
+}
