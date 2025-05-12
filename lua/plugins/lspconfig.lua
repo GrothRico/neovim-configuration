@@ -25,8 +25,23 @@ end
 local configure_lsps = function()
     local lspconfig = require("lspconfig")
     local capabilities = get_capabilities()
+    local configs = require("lspconfig.configs")
     lspconfig.lua_ls.setup({ capabilities = capabilities })
     lspconfig.clangd.setup({ capabilities = capabilities })
+    lspconfig.ts_ls.setup({ capabilities = capabilities })
+    lspconfig.rust_analyzer.setup({ capabilities = capabilities })
+    lspconfig.glsl_analyzer.setup({ capabilities = capabilities })
+    lspconfig.pylsp.setup({ capabilities = capabilities })
+    configs.intelephense = {
+	default_config = {
+	    cmd = { "intelephense", "--stdio" };
+	    filetypes = { "php" };
+	    root_dir = function (fname)
+		return vim.loop.cwd()
+	    end;
+	}
+    }
+    lspconfig.intelephense.setup({ capabilities = capabilities })
 end
 
 local completion_dependency = function()
@@ -60,6 +75,7 @@ return {
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 	vim.keymap.set("n", "gd", telescope.lsp_definitions)
 	vim.keymap.set("n", "<leader>lr", telescope.lsp_references)
+	vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
 	configure_lsps()
     end
 }
