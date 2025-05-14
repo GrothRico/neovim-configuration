@@ -4,6 +4,6 @@ vim.o.tabstop = 8
 vim.o.softtabstop = 8
 vim.o.visualbell = nil
 vim.o.relativenumber = true
-vim.o.colorcolumn = "80"    
+vim.o.colorcolumn = "80"
 vim.o.guicursor="n-v-c-sm:block"
 vim.opt.scrolloff=10

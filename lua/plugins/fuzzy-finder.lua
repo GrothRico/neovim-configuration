@@ -23,7 +23,7 @@ return {
 	local telescope = require("telescope")
 	local builtin = require("telescope.builtin")
 	local theme = require("telescope.themes")
-	function leaderMap(keys, func)
+	local leaderMap = function (keys, func)
 	    vim.keymap.set("n", "<leader>" .. keys, func)
 	end
 	telescope.setup({
@@ -31,11 +31,20 @@ return {
 		["ui-select"] = {
 		    require("telescope.themes").get_dropdown(),
 		}
-	    }
+	    },
+	    defaults = {
+		layout_config = {
+		    vertical = { width = 0.95 },
+		    horizontal = { width = 0.95 },
+		},
+	    },
 	})
 	pcall(telescope.load_extension, "fzf")
 	pcall(telescope.load_extension, "ui-select")
 	leaderMap("f", builtin.find_files)
+	leaderMap("F", function () 
+	    builtin.find_files({ no_ignore = true })
+	end)
 	leaderMap("g", builtin.live_grep)
 	leaderMap("/", function()
 	    builtin.current_buffer_fuzzy_find(theme.get_dropdown({
@@ -45,7 +54,7 @@ return {
 	end)
 	leaderMap("nv", function()
 	    builtin.find_files({
-		cwd = vim.fn.stdpath("config")
+		cwd = vim.fn.stdpath("config"),
 	    })
 	end)
     end

@@ -1,6 +1,6 @@
-local M = {
-    dev = true,
-}
+-- FIXME: invalid spec
+
+local M = {}
 
 function M.run()
     local bufnr = vim.api.nvim_get_current_buf()
@@ -38,5 +38,4 @@ function M.run()
     })
 end
 
-return M
-
+return {}

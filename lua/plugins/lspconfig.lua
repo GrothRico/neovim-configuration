@@ -73,6 +73,7 @@ return {
     config = function()
 	local telescope = require("telescope.builtin")
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+	vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action)
 	vim.keymap.set("n", "gd", telescope.lsp_definitions)
 	vim.keymap.set("n", "<leader>lr", telescope.lsp_references)
 	vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
