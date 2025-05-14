@@ -27,7 +27,11 @@ local nightfox = {
 		},
 	    },
 	})
-	vim.cmd.colorscheme("dayfox")
+	local map = {
+	    light = "dayfox",
+	    dark = "nightfox"
+	}
+	vim.cmd.colorscheme(map[os.getenv("NVIM_COLOR_THEME") or "dark"])
     end
 }
 
