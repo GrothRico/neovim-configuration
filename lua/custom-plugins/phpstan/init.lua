@@ -17,10 +17,6 @@ function M.run_phpstan()
         if not data or #data == 0 then return end
 
         local json_data = table.concat(data, "")
-	local f = io.open("/tmp/phpstan.json", "w")
-	f:write(json_data)
-	f:close()
-	vim.notify("Wrote raw PHPStan output to /tmp/phpstan.json")
 	local ok, decoded = pcall(vim.fn.json_decode, json_data)
         if not ok or not decoded.files then return end
 
