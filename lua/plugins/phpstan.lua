@@ -1,4 +1,4 @@
-return {
+local plugin = {
     dir = vim.fn.stdpath("config") .. "/lua/custom-plugins/phpstan",
     config = function()
 	vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
@@ -9,3 +9,5 @@ return {
 	})
     end,
 }
+
+return { plugin }

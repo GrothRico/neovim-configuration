@@ -32,6 +32,7 @@ local configure_lsps = function()
     lspconfig.rust_analyzer.setup({ capabilities = capabilities })
     lspconfig.glsl_analyzer.setup({ capabilities = capabilities })
     lspconfig.pylsp.setup({ capabilities = capabilities })
+    -- lspconfig.phpactor.setup({ capabilities = capabilities })
     configs.intelephense = {
 	default_config = {
 	    cmd = { "intelephense", "--stdio" };

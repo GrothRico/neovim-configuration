@@ -43,6 +43,7 @@ local nvim_cmp = {
     config = function()
 	local cmp = require("cmp")
 	local luasnip = require("luasnip")
+	require("vim_dadbod_completion")
 	luasnip.config.setup({})
 	cmp.setup({
 	    snippet = {
@@ -58,6 +59,8 @@ local nvim_cmp = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },
+		{ name = "vim-dadbod-completion" },
+		{ name = "buffer" },
 	    },
 	    mapping = cmp.mapping.preset.insert({
 		["<C-n>"] = cmp.mapping.select_next_item(),
