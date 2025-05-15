@@ -77,6 +77,10 @@ return {
 	vim.keymap.set("n", "gd", telescope.lsp_definitions)
 	vim.keymap.set("n", "<leader>lr", telescope.lsp_references)
 	vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
+	vim.keymap.set("n", "<leader>D", telescope.diagnostics)
+	vim.keymap.set("n", "<leader>d", function()
+	    telescope.diagnostics({ bufnr = 0 })
+	end)
 	configure_lsps()
     end
 }
