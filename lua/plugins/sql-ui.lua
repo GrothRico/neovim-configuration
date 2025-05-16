@@ -21,6 +21,12 @@ local plugin = {
 		vim.g.db_ui_use_nerd_fonts = 1
 		vim.keymap.set("n", "<leader>ps", cmd({ "tabnew", "DBUI" }))
 		vim.keymap.set("n", "<leader>pq", cmd({ "tabclose", "DBUIClose" }))
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = { "dbout" },
+			callback = function()
+				vim.opt.foldenable = false
+			end,
+		})
 	end,
 }
 
