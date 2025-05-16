@@ -10,7 +10,10 @@ local plugin = {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				javascript = { "prettierd" },
+				javascriptreact = { "prettierd" },
 				typescript = { "prettierd" },
+				typescriptreact = { "prettierd" },
+				php = { "php-cs-fixer" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
@@ -20,4 +23,4 @@ local plugin = {
 	end,
 }
 
-return {}
+return { plugin }
