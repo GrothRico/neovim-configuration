@@ -8,3 +8,4 @@ vim.o.colorcolumn = "80"
 vim.o.guicursor = "n-v-c-sm:block"
 vim.opt.scrolloff = 10
 vim.o.autoindent = true
+vim.o.updatetime = 500
