@@ -21,8 +21,6 @@ note_taking.open_window = function()
 	local height = math.floor(vim.o.lines * 0.6)
 	local row = math.floor((vim.o.lines - height) / 2)
 	local col = math.floor((vim.o.columns - width) / 2)
-	vim.cmd("filetype plugin indent on")
-	vim.cmd("set filetype=markdown")
 	note_taking.win = vim.api.nvim_open_win(note_taking.buf, true, {
 		relative = "editor",
 		width = width,
