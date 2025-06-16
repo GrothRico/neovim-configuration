@@ -43,6 +43,7 @@ local configure_lsps = function()
 		},
 	}
 	lspconfig.intelephense.setup({ capabilities = capabilities })
+	lspconfig.pyright.setup({ capabilities = capabilities })
 end
 
 local completion_dependency = function()

@@ -14,6 +14,7 @@ local plugin = {
 				typescript = { "prettierd", "stylelint" },
 				typescriptreact = { "prettierd", "stylelint" },
 				php = { "php-cs-fixer" },
+				python = { "black" },
 			},
 			format_on_save = {
 				timeout_ms = 10000,
