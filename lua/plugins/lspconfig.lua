@@ -28,11 +28,29 @@ local configure_lsps = function()
 	local configs = require("lspconfig.configs")
 	lspconfig.lua_ls.setup({ capabilities = capabilities })
 	lspconfig.clangd.setup({ capabilities = capabilities })
-	-- lspconfig.ts_ls.setup({ capabilities = capabilities })
 	lspconfig.rust_analyzer.setup({ capabilities = capabilities })
 	lspconfig.glsl_analyzer.setup({ capabilities = capabilities })
-	lspconfig.pylsp.setup({ capabilities = capabilities })
-	-- lspconfig.phpactor.setup({ capabilities = capabilities })
+	-- lspconfig.pyright.setup({
+	-- 	cmd = { "poetry", "run", "pyright-langserver", "--stdio" },
+	-- 	capabilities = capabilities,
+	-- })
+	lspconfig.pylsp.setup({
+		cmd = { "poetry", "run", "python", "-m", "pylsp" },
+		capabilities = capabilities,
+		settings = {
+			pylsp = {
+				plugins = {
+					pylsp_mypy = {
+						enabled = true,
+						override = {
+							interpreter = "python",
+						},
+					},
+					ruff = { enabled = true },
+				},
+			},
+		},
+	})
 	configs.intelephense = {
 		default_config = {
 			cmd = { "intelephense", "--stdio" },
@@ -43,7 +61,6 @@ local configure_lsps = function()
 		},
 	}
 	lspconfig.intelephense.setup({ capabilities = capabilities })
-	lspconfig.pyright.setup({ capabilities = capabilities })
 end
 
 local completion_dependency = function()
@@ -75,7 +92,7 @@ return {
 	config = function()
 		local telescope = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
-		vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action)
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 		vim.keymap.set("n", "<leader>t", vim.lsp.buf.type_definition)
 		vim.keymap.set("n", "gd", telescope.lsp_definitions)
 		vim.keymap.set("n", "<leader>lr", telescope.lsp_references)

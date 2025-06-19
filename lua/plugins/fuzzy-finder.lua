@@ -41,12 +41,18 @@ return {
 		})
 		pcall(telescope.load_extension, "fzf")
 		pcall(telescope.load_extension, "ui-select")
-		leaderMap("f", builtin.find_files)
-		leaderMap("F", function()
-			builtin.find_files({ no_ignore = true })
+		leaderMap("f", function()
+			builtin.find_files()
 		end)
-		leaderMap("g", builtin.live_grep)
-		leaderMap("/", function()
+		leaderMap("F", function()
+			builtin.find_files({ no_ignore = true, hidden = true })
+		end)
+		leaderMap("g", function()
+			builtin.live_grep({
+				hidden = true,
+			})
+		end)
+		vim.keymap.set("n", "/", function()
 			builtin.current_buffer_fuzzy_find(theme.get_dropdown({
 				winblend = 10,
 				previewer = false,
