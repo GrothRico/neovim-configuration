@@ -52,7 +52,7 @@ return {
 				hidden = true,
 			})
 		end)
-		vim.keymap.set("n", "/", function()
+		vim.keymap.set("n", "<leader>/", function()
 			builtin.current_buffer_fuzzy_find(theme.get_dropdown({
 				winblend = 10,
 				previewer = false,

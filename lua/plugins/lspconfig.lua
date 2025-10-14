@@ -23,18 +23,25 @@ local get_capabilities = function()
 end
 
 local configure_lsps = function()
-	local lspconfig = require("lspconfig")
 	local capabilities = get_capabilities()
 	local configs = require("lspconfig.configs")
-	lspconfig.lua_ls.setup({ capabilities = capabilities })
-	lspconfig.clangd.setup({ capabilities = capabilities })
-	lspconfig.rust_analyzer.setup({ capabilities = capabilities })
-	lspconfig.glsl_analyzer.setup({ capabilities = capabilities })
+	vim.lsp.config("lua_ls", { capabilities = capabilities })
+	vim.lsp.enable("lua_ls")
+	vim.lsp.config("clangd", { capabilities = capabilities })
+	vim.lsp.enable("clangd")
+	vim.lsp.config("rust_analyzer", { capabilities = capabilities })
+	vim.lsp.enable("rust_analyzer")
+	vim.lsp.config("glsl_analyzer", { capabilities = capabilities })
+	vim.lsp.enable("glsl_analyzer")
+	vim.lsp.config("twiggy_language_server", { capabilities = capabilities })
+	vim.lsp.enable("twiggy_language_server")
+	vim.lsp.config("cssls", { capabilities = capabilities })
+	vim.lsp.enable("cssls")
 	-- lspconfig.pyright.setup({
 	-- 	cmd = { "poetry", "run", "pyright-langserver", "--stdio" },
 	-- 	capabilities = capabilities,
 	-- })
-	lspconfig.pylsp.setup({
+	vim.lsp.config("pylsp", {
 		cmd = { "poetry", "run", "python", "-m", "pylsp" },
 		capabilities = capabilities,
 		settings = {
@@ -51,6 +58,7 @@ local configure_lsps = function()
 			},
 		},
 	})
+	vim.lsp.enable("pylsp")
 	configs.intelephense = {
 		default_config = {
 			cmd = { "intelephense", "--stdio" },
@@ -58,9 +66,13 @@ local configure_lsps = function()
 			root_dir = function(fname)
 				return vim.loop.cwd()
 			end,
+			files = {
+				exclude = { "var" },
+			},
 		},
 	}
-	lspconfig.intelephense.setup({ capabilities = capabilities })
+	vim.lsp.config("intelephense", { capabilities = capabilities })
+	vim.lsp.enable("intelephense")
 end
 
 local completion_dependency = function()
