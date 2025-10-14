@@ -59,19 +59,18 @@ local configure_lsps = function()
 		},
 	})
 	vim.lsp.enable("pylsp")
-	configs.intelephense = {
-		default_config = {
-			cmd = { "intelephense", "--stdio" },
-			filetypes = { "php" },
-			root_dir = function(fname)
-				return vim.loop.cwd()
-			end,
-			files = {
-				exclude = { "var" },
+	vim.lsp.config("intelephense", {
+		capabilities = capabilities,
+		settings = {
+			intelephense = {
+				files = {
+					exclude = {
+						"**/var/**",
+					},
+				},
 			},
 		},
-	}
-	vim.lsp.config("intelephense", { capabilities = capabilities })
+	})
 	vim.lsp.enable("intelephense")
 end
 
