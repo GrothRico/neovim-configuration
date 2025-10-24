@@ -24,7 +24,6 @@ end
 
 local configure_lsps = function()
 	local capabilities = get_capabilities()
-	local configs = require("lspconfig.configs")
 	vim.lsp.config("lua_ls", { capabilities = capabilities })
 	vim.lsp.enable("lua_ls")
 	vim.lsp.config("clangd", { capabilities = capabilities })
