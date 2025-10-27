@@ -71,6 +71,8 @@ local configure_lsps = function()
 		},
 	})
 	vim.lsp.enable("intelephense")
+	vim.lsp.config("tailwindcss", { capabilities = capabilities })
+	vim.lsp.enable("tailwindcss")
 end
 
 local completion_dependency = function()
@@ -101,6 +103,7 @@ return {
 	},
 	config = function()
 		local telescope = require("telescope.builtin")
+		vim.diagnostic.config({ virtual_text = true })
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 		vim.keymap.set("n", "<leader>t", vim.lsp.buf.type_definition)
